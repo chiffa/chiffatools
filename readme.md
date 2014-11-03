@@ -23,7 +23,7 @@ Tools specific to bioinformatics:
 
 
 
-author : chiffa@github.commatrix_2D_embedding.py
+author : chiffa@github.com
 Some of the tools are courtesy of StackOverflow answers that are usually cited in the comments.
 
 Most of metods rely heavily on numpy, scipy, and scikits-learn
