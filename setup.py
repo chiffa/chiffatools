@@ -14,9 +14,9 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # http://packaging.python.org/en/latest/tutorial.html#version
-    version='0.0.a2',
+    version='0.0.a3',
 
-    description='A sample Python project',
+    description='A collection of useful but shorts tools for computational biologists and other data scientists',
     long_description=long_description,
 
     # The project's main homepage.
@@ -27,7 +27,7 @@ setup(
     author_email='andrei.chiffa136@gmail.com',
 
     # Choose your license
-    license='BSD 3-clause',
+    license='BSD',
 
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
@@ -50,7 +50,7 @@ setup(
     ],
 
     # What does your project relate to?
-    keywords='improved visualization, linear algebra, GDF exporting, Gene Ontology, Uniprot',
+    keywords='improved visualization, linear algebra, GDF exporting, Gene Ontology, Uniprot, HMM',
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
