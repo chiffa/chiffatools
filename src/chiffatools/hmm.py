@@ -36,7 +36,6 @@ def viterbi(hmm, initial_dist, emissions):
 
         stack.append(max_col_ixs)
 
-    print probs
     state_seq = [np.argmax(probs)]
 
     while stack:
