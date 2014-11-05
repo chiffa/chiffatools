@@ -70,6 +70,12 @@ def kde_compute(bi_array, nbins=30, samples=10, show=True):
     return lambda x: np.tanh(k(x)*overload)
 
 
+def smooth_histogram(data):
+    density = gaussian_kde(data.flatten())
+    xs = np.linspace(data.min(), data.max(), 200)
+    plt.plot(xs, density(xs))
+
+
 if __name__ == "__main__":
     from numpy.random import normal
     N = 1e5
