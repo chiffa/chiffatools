@@ -71,9 +71,10 @@ def kde_compute(bi_array, nbins=30, samples=10, show=True):
 
 
 def smooth_histogram(data):
-    density = gaussian_kde(data.flatten())
-    xs = np.linspace(data.min(), data.max(), 200)
-    plt.plot(xs, density(xs))
+    fltr = np.logical_not(np.isnan(data))
+    density = gaussian_kde(data[fltr].flatten())
+    xs = np.linspace(data[fltr].min(), data[fltr].max(), 200)
+    plt.plot(xs, density(xs), 'k')
 
 
 if __name__ == "__main__":
