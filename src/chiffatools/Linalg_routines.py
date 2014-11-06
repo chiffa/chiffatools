@@ -202,11 +202,15 @@ def hierchical_clustering(D, names):
 
     return index
 
-def show_matrix_with_names(matrix, vert_names, horiz_names):
-    prism_cmap = get_cmap('jet')
-    prism_vals = prism_cmap(np.arange(0, 1, 0.01))
-    prism_vals[99] = [0, 0, 0, 1]
-    costum_cmap = colors.LinearSegmentedColormap.from_list('my_colormap', prism_vals)
+def show_matrix_with_names(matrix, vert_names, horiz_names, colormap='b_jet'):
+    if colormap == 'b_jet':
+        prism_cmap = get_cmap('jet')
+        prism_vals = prism_cmap(np.arange(0, 1, 0.01))
+        prism_vals[99] = [0, 0, 0, 1]
+        costum_cmap = colors.LinearSegmentedColormap.from_list('my_colormap', prism_vals)
+
+    else:
+        costum_cmap = get_cmap(colormap)
 
     plt.imshow(matrix, interpolation='nearest', cmap=costum_cmap)
     plt.colorbar()
