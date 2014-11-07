@@ -214,11 +214,21 @@ def show_matrix_with_names(matrix, vert_names, horiz_names, colormap='b_jet'):
 
     plt.imshow(matrix, interpolation='nearest', cmap=costum_cmap)
     plt.colorbar()
-    plt.tick_params(axis='both',  labelsize=10)
+    plt.tick_params(axis='both', labelsize=10)
     plt.yticks(range(0, len(vert_names)), vert_names, rotation='horizontal')
     plt.xticks(range(0, len(horiz_names)), horiz_names, rotation='vertical')
     plt.subplots_adjust(left=0.2, bottom=0.2)
     plt.show()
+
+def rm_nans(np_array):
+    """
+    Flattens the np array and removes all the occurences of the np.NaN.
+    destinated for functions working on flat arrays that don't tolerate NaN well
+    :param np_array: input numpy array
+    :return: flattened array without nans
+    """
+    fltr = np.logical_not(np.isnan(np_array))
+    return np_array[fltr]
 
 
 if __name__ == "__main__":
