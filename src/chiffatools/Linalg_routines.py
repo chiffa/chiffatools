@@ -202,7 +202,29 @@ def hierchical_clustering(D, names):
 
     return index
 
-def show_matrix_with_names(matrix, vert_names, horiz_names, colormap='b_jet'):
+def show_matrix_with_names(matrix, vert_names, horiz_names, colormap='b_jet', overlay=None):
+
+    def full_rename(namelist, subtypes):
+
+        def rename(list, subtype, character):
+            ret_list = []
+            for bearer in list:
+                modded = False
+                for mod_decider in subtype:
+                    if mod_decider in bearer:
+                        modded = True
+                        ret_list.append(bearer+' '+str(character))
+                        break
+                if not modded:
+                    ret_list.append(bearer)
+            return ret_list
+
+        new_vert_names = namelist
+        for idux, subtype in enumerate(subtypes, 1):
+            new_vert_names = rename(new_vert_names, subtype, ''.join(['*']*idux))
+
+        return new_vert_names
+
     if colormap == 'b_jet':
         prism_cmap = get_cmap('jet')
         prism_vals = prism_cmap(np.arange(0, 1, 0.01))
@@ -214,11 +236,30 @@ def show_matrix_with_names(matrix, vert_names, horiz_names, colormap='b_jet'):
 
     plt.imshow(matrix, interpolation='nearest', cmap=costum_cmap)
     plt.colorbar()
+    if overlay:
+        print overlay[0]
+        print overlay[1]
+        overlay_y, overlay_x = np.nonzero(overlay[0])
+        plt.scatter(overlay_x, overlay_y, label=overlay[1])
+        plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3, mode="expand", borderaxespad=0.)
     plt.tick_params(axis='both', labelsize=10)
-    plt.yticks(range(0, len(vert_names)), vert_names, rotation='horizontal')
-    plt.xticks(range(0, len(horiz_names)), horiz_names, rotation='vertical')
+
+    if type(vert_names) == list:
+        plt.yticks(range(0, len(vert_names)), vert_names, rotation='horizontal')
+    if type(horiz_names) == list:
+        plt.xticks(range(0, len(horiz_names)), horiz_names, rotation='vertical')
+    if type(vert_names) == tuple:
+        vert_names = full_rename(vert_names[0], vert_names[1:])
+        plt.yticks(range(0, len(vert_names)), vert_names, rotation='horizontal')
+    if type(horiz_names) == tuple:
+        horiz_names = full_rename(horiz_names[0], horiz_names[1:])
+        plt.xticks(range(0, len(horiz_names)), horiz_names, rotation='vertical')
+
+
     plt.subplots_adjust(left=0.2, bottom=0.2)
     plt.show()
+
+
 
 def rm_nans(np_array):
     """
