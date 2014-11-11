@@ -14,7 +14,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # http://packaging.python.org/en/latest/tutorial.html#version
-    version='0.0.a9',
+    version='0.0.a10',
 
     description='A collection of useful but shorts tools for computational biologists and other data scientists',
     long_description=long_description,
@@ -39,7 +39,7 @@ setup(
 
         # Indicate who your project is intended for
         'Intended Audience :: Computational biologists, General scientific computing users',
-        'Topic :: Software Development :: Build Tools',
+        'Topic :: Scientific computing',
 
         # Pick your license as you wish (should match "license" above)
         'License :: OSI Approved :: BSD 3-clause license',
