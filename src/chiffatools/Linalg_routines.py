@@ -240,7 +240,7 @@ def show_matrix_with_names(matrix, vert_names, horiz_names, colormap='b_jet', ov
         print overlay[0]
         print overlay[1]
         overlay_y, overlay_x = np.nonzero(overlay[0])
-        plt.scatter(overlay_x, overlay_y, marker='k*', label=overlay[1])
+        plt.scatter(overlay_x, overlay_y, c='k', marker='*', label=overlay[1])
         plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3, mode="expand", borderaxespad=0.)
     plt.tick_params(axis='both', labelsize=10)
 
