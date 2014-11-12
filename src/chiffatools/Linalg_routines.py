@@ -202,7 +202,7 @@ def hierchical_clustering(D, names):
 
     return index
 
-def show_matrix_with_names(matrix, vert_names, horiz_names, colormap='b_jet', overlay=None):
+def show_matrix_with_names(matrix, vert_names, horiz_names, colormap='b_jet', overlay=None, force_range=False):
 
     def full_rename(namelist, subtypes):
 
@@ -234,7 +234,11 @@ def show_matrix_with_names(matrix, vert_names, horiz_names, colormap='b_jet', ov
     else:
         costum_cmap = get_cmap(colormap)
 
-    plt.imshow(matrix, interpolation='nearest', cmap=costum_cmap)
+    if force_range:
+        plt.imshow(matrix, interpolation='nearest', cmap=costum_cmap, vmin=force_range[0], vmax=force_range[1])
+    else:
+        plt.imshow(matrix, interpolation='nearest', cmap=costum_cmap)
+
     plt.colorbar()
     if overlay:
         print overlay[0]
