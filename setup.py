@@ -38,7 +38,8 @@ setup(
         'Development Status :: 3 - Alpha',
 
         # Indicate who your project is intended for
-        'Intended Audience :: Computational biologists, General scientific computing users',
+        'Intended Audience :: Science/Research, Developers',
+        'Intended Audience :: Developers',
         'Topic :: Scientific computing',
 
         # Pick your license as you wish (should match "license" above)

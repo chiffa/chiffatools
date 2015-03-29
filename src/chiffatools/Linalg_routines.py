@@ -173,7 +173,7 @@ def cluster_nodes(dist_laplacian, clusters=3, show=False):
     return np.reshape(labels, (dist_laplacian.shape[0], 1))
 
 
-def hierchical_clustering(D, names):
+def hierchical_clustering(D, names, noshow=False):
     # Compute and plot dendrogram.
     fig = plt.figure()
     axdendro = fig.add_axes([0.09,0.1,0.2,0.8])
@@ -185,6 +185,9 @@ def hierchical_clustering(D, names):
     # Plot distance matrix.
     axmatrix = fig.add_axes([0.3,0.1,0.6,0.8])
     index = Z['leaves']
+    if noshow:
+        return index
+
     D = D[index,:]
     D = D[:,index]
     im = axmatrix.matshow(D, aspect='auto', origin='lower')
@@ -193,10 +196,8 @@ def hierchical_clustering(D, names):
 
     # Plot colorbar.
     plt.colorbar(im)
-
     # Display and save figure.
     plt.show()
-
     # plt.yticks(range(0, len(names)), np.array(names)[index].tolist(), rotation='horizontal')
     plt.show()
 
