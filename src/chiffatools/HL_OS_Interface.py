@@ -22,3 +22,11 @@ def rm_rf(folder):
             elif os.path.isdir(file_path): shutil.rmtree(file_path)
         except Exception, e:
             print e
+
+
+def check_md5(file):
+    pass
+
+
+if __name__ == "__main__":
+    pass
