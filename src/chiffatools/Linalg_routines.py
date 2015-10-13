@@ -277,6 +277,19 @@ def rm_nans(np_array):
     return np_array[fltr]
 
 
+def gini_coeff(x):
+    """
+    requires all values in x to be zero or positive numbers,
+    otherwise results are undefined
+    source : http://www.ellipsix.net/blog/2012/11/the-gini-coefficient-for-distribution-inequality.html
+    """
+    x = rm_nans(x.astype(np.float))
+    n = len(x)
+    s = x.sum()
+    r =  np.argsort(np.argsort(-x)) # calculates zero-based ranks
+    return 1 - (2.0 * (r*x).sum() + s)/(n*s)
+
+
 if __name__ == "__main__":
     test_lapl = lil_matrix(np.zeros((4, 4)))
     test_lapl.setdiag([1, 2, 3, 0])
