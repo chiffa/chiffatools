@@ -1,36 +1,40 @@
-__author__ = 'ank'
-
+"""
+Contains a set of wrappers that are useful for debugging and operation profiling
+"""
 import matplotlib.pyplot as plt
 from time import time
 
-def rs(matrix, name):
+
+def render_2d_matrix(matrix, name):
     plt.title(name)
     plt.imshow(matrix, interpolation='nearest')
     plt.colorbar()
     plt.show()
 
 
-def debug_wrapper(funct):
+def debug_wrapper(function_of_interest):
 
-    def check_matrix(*args,**kwargs):
-        result = funct(*args, **kwargs)
+    def check_matrix(*args, **kwargs):
+        result = function_of_interest(*args, **kwargs)
         if type(result) is not tuple:
-            rs(result, funct.__name__)
-        else:
-            rs(result[0], funct.__name__)
-        check_matrix.__name__ = funct.__name__
-        check_matrix.__doc__ = funct.__doc__
+            render_2d_matrix(result, function_of_interest.__name__)
+        else:  # TODO: perform a vector rendering of function results
+            render_2d_matrix(result[0], function_of_interest.__name__)
+        check_matrix.__name__ = function_of_interest.__name__
+        check_matrix.__doc__ = function_of_interest.__doc__
         return result
 
     return check_matrix
 
-def time_wrapper(funct):
 
-    def time_execution(*args,**kwargs):
+def time_it_wrapper(function_of_interest):
+
+    def time_execution(*args, **kwargs):
         start = time()
-        result = funct(*args, **kwargs)
-        print funct.__name__, time()-start
-        time_execution.__doc__ = funct.__doc__
+        result = function_of_interest(*args, **kwargs)
+        print '%s run in %s' % (function_of_interest.__name__, time() - start)
+        time_execution.__name__ = function_of_interest.__name__
+        time_execution.__doc__ = function_of_interest.__doc__
         return result
 
     return time_execution
